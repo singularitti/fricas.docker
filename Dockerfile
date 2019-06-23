@@ -69,3 +69,10 @@ RUN cd /root && \
     cd fricas-$FRICAS_VERSION && ./configure --with-lisp=sbcl --with-x && \
     make && make install && \
     cd /root && rm -r fricas-$FRICAS_VERSION && rm fricas-$FRICAS_VERSION-full.tar.bz2
+
+
+# ===============
+# Start container
+# ===============
+
+CMD cd /root && zsh
