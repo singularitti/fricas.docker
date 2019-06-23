@@ -20,7 +20,7 @@ ENV FRICAS_VERSION 1.3.5
 # Get packages and install missing tools
 # ======================================
 
-RUN apt-get update && apt-get install -y -q \
+RUN apt-get update && apt-get upgrade && apt-get install -y -q \
     build-essential \
     make \
     gcc \
@@ -41,8 +41,22 @@ RUN apt-get update && apt-get install -y -q \
     dvipng \
     auctex \
     net-tools \
-    inetutils-ping
+    inetutils-ping \
+    zsh
 
+
+# =====================
+# Install zsh framework
+# =====================
+
+RUN zsh \
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" \
+    setopt EXTENDED_GLOB \
+    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do \
+        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" \
+    done
+
+COPY .zpreztorc /root/
 
 # =============================
 # FriCAS (may take some time ;)
@@ -53,11 +67,4 @@ RUN cd /root && \
     tar xvf fricas-$FRICAS_VERSION-full.tar.bz2 && \
     cd fricas-$FRICAS_VERSION && ./configure --with-lisp=sbcl --with-x && \
     make && make install && \
-    cd /root && rm -r fricas-$FRICAS_VERSION && rm fricas-$FRICAS_VERSION-full.tar.bz2 \
-    apt-get update && apt-get upgrade && apt-get install zsh \
-    zsh \
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" \
-    setopt EXTENDED_GLOB \
-    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do \
-        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" \
-    done
+    cd /root && rm -r fricas-$FRICAS_VERSION && rm fricas-$FRICAS_VERSION-full.tar.bz2
