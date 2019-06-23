@@ -1,2 +1,3 @@
 # fricas.docker
-Dockerfile for nilqed/fricas image (auto-build)
+
+This docker file is referenced from [`nilqed/fricas_docker`](https://github.com/nilqed/fricas_docker/tree/master/fricas).
