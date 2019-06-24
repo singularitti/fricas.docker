@@ -39,7 +39,8 @@ RUN apt-get -qq update && apt-get -qq upgrade -y && apt-get -qq install -y -q \
     auctex \
     net-tools \
     inetutils-ping \
-    zsh && \
+    zsh \
+    vim && \
     apt-get -qq autoclean && apt-get -qq autoremove
 
 
@@ -55,6 +56,16 @@ RUN cd /root && zsh && \
     for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"; done
 
 COPY .zpreztorc /root/
+
+
+# =====================
+# Install vim framework
+# =====================
+
+RUN git clone --depth=1 https://github.com/amix/vimrc.git /root/.vim_runtime && \
+    sh /root/.vim_runtime/install_awesome_vimrc.sh
+
+COPY my_configs.vim /root/.vim_runtime/
 
 
 # =============================
