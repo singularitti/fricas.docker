@@ -17,7 +17,7 @@ ENV FRICAS_VERSION 1.3.5
 # Get packages and install missing tools
 # ======================================
 
-RUN apt-get update && apt-get -qq upgrade -y && apt-get install -y -q \
+RUN apt-get -qq update && apt-get -qq upgrade -y && apt-get -qq install -y -q \
     build-essential \
     make \
     gcc \
@@ -39,7 +39,8 @@ RUN apt-get update && apt-get -qq upgrade -y && apt-get install -y -q \
     auctex \
     net-tools \
     inetutils-ping \
-    zsh
+    zsh && \
+    apt-get -qq autoclean && apt-get -qq autoremove
 
 
 # =====================
