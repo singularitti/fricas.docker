@@ -1,5 +1,9 @@
 # fricas.docker
 
+[TOC]
+
+## Install
+
 This docker file is referenced from [`nilqed/fricas_docker`](https://github.com/nilqed/fricas_docker/tree/master/fricas).
 This image is hosted on [`singularitti/fricas`](https://hub.docker.com/r/singularitti/fricas), please download by
 
@@ -18,3 +22,11 @@ and start it by
 ```shell
 docker start -a -i friacs
 ```
+
+## Content
+
+- Ubuntu 18.04.1 LTS (cat /etc/*release)
+- SBCL 1.4.5.debian (64bit)
+- FriCAS 1.3.5 compiled at Sun Feb 3 13:45:44 CET 2019
+- `zsh` and [`Prezto`](https://github.com/sorin-ionescu/prezto) framework
+- see [Dockerfile](https://github.com/singularitti/fricas.docker/blob/master/Dockerfile)
