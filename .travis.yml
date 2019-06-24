@@ -3,15 +3,16 @@ sudo: required #is required to use docker service in travis
 language: shell
 
 env:
-  - APP_NAME=fricas
-  - DOCKERHUB_ACCOUNT=singularitti
-  - VERSION=latest
-
+  matrix:
+    - APP_NAME=fricas
+    - DOCKER_USERNAME=singularitti
+    - VERSION=latest
+    - secure: RQBXdJRblT435v8xHowBK/Rycg9M3idg8PxsuWQ73GRI+XOhKaGdThQ/rgKlUMtd06jJQsMhL/XN8L4AZG+9kNlQoE8gkERJnylgmLKBT/v1wWbyBuIb3X+ujT+VebW6NakJU2nCraYS03u9dnY8LqriwyWpQE0nSe5Vqx5Ic5r8rTiyLq41ZnWVHaQUFOhAO7NTmb0WkJ3YRw5RFDIYdznnNO+invYCp6blJpAnvtNzvlZosiqwNlKYLraHKVOuvaRJZQ3CF/gaNzpndPpZ0xPhuX6IUy69pTeRMDyyii1c2TLAqkMYWsci89SRGYzcntVMR/5rLmgwXcv2YmvPMK6/+aBpukDoq7koFu2cb4LcrUH+1srQBx9oa4Kk/zVh2E+UW9cOibm+fky+F1PdQAXUympCCh5w93nyWn3nfBQrHdDZM6+j1hz6ueoFOS5LWTQ/oofuukg6a6EkQ1BdMU6I4brMK//JhVkQ7PZ5kzptZTTiojeEAw0lA12nfownS1YuaYAgSsi935j5aYsR85k8xPfVda/uWHzebBV3DvIx2FODbgMkD9DmSD+v6B6dYD5P08o58v796DQEvULzKXOmGs0NF3MS4yYZNOmXm6RvIvTDSpXX6Jh8mVqjCyYtswTKJuTgJCeP9/FmhvSFS/aKAbQzjS9fRGzRhu/fg2I=
 services:
   - docker
-
 after_success:
-  - docker --version  # document the version travis is using
+  - docker --version
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build --rm -f "Dockerfile" -t $APP_NAME:$TRAVIS_BUILD_ID .
-  - docker tag $APP_NAME:$TRAVIS_BUILD_ID $DOCKERHUB_ACCOUNT/$APP_NAME:$VERSION
+  - docker tag $APP_NAME:$TRAVIS_BUILD_ID $DOCKER_USERNAME/$APP_NAME:$VERSION
   # - docker push $DOCKERHUB_ACCOUNT/$APP_NAME:$VERSION
