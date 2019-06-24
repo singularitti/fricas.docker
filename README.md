@@ -22,7 +22,7 @@ docker create --name fricas -t -i singularitti/fricas
 and start it by
 
 ```shell
-docker start -a -i friacs
+docker start -a -i fricas
 ```
 
 ## Content
