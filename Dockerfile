@@ -64,7 +64,7 @@ RUN cd /root && \
     wget $FRICAS_SF/$FRICAS_VERSION/fricas-$FRICAS_VERSION-full.tar.bz2 && \
     tar xvf fricas-$FRICAS_VERSION-full.tar.bz2 && \
     cd fricas-$FRICAS_VERSION && ./configure --with-lisp=sbcl --with-x && \
-    make && make install && \
+    make -k > build.log 2>&1 && make install && \
     cd /root && rm -r fricas-$FRICAS_VERSION && rm fricas-$FRICAS_VERSION-full.tar.bz2
 
 
