@@ -1,5 +1,6 @@
 # fricas.docker
 [![Build Status](https://travis-ci.com/singularitti/fricas.docker.svg?branch=master)](https://travis-ci.com/singularitti/fricas.docker)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/singularitti/fricas.svg)
 
 [TOC]
 
