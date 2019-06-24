@@ -12,6 +12,6 @@ services:
 
 after_success:
   - docker --version  # document the version travis is using
-  - docker build --rm -f "Dockerfile" -t $APP_NAME:$VERSION .
-  - docker tag $APP_NAME:$VERSION $DOCKERHUB_ACCOUNT/$APP_NAME:$VERSION
+  - docker build --rm -f "Dockerfile" -t $APP_NAME:$TRAVIS_BUILD_ID .
+  - docker tag $APP_NAME:$TRAVIS_BUILD_ID $DOCKERHUB_ACCOUNT/$APP_NAME:$VERSION
   # - docker push $DOCKERHUB_ACCOUNT/$APP_NAME:$VERSION
