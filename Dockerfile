@@ -49,8 +49,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y -q \
 # Install zsh framework
 # =====================
 
-RUN cd /root && zsh \
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" \
+RUN cd /root && zsh && \
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" && \
     setopt EXTENDED_GLOB
 
 COPY .zpreztorc /root/
