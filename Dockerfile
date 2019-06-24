@@ -1,7 +1,6 @@
 # **************************************************************************
 # Purpose ...: Compilation of FriCAS (official SF version)
-# Build .... : docker build -t fricas:latest .
-# Test ..... : docker run -t -i fricas:latest fricas -nox
+# Build .... : docker build -t singularitti/fricas:latest .
 # Version .. : 02-FEB-2019
 # OS ....... : ubuntu:latest
 # **************************************************************************
