@@ -8,8 +8,6 @@
 
 FROM ubuntu:latest
 
-LABEL fricas-devel <fricas-devel@googlegroups.com>
-
 # ENV DEBIAN_FRONTEND noninteractive
 # discouraged: see https://docs.docker.com/engine/faq/
 
