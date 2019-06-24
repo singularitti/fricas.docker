@@ -1,0 +1,19 @@
+sudo: required #is required to use docker service in travis
+
+language: shell
+
+env:
+  - APP_NAME=fricas
+  - DOCKERHUB_ACCOUNT=singularitti
+  - VERSION=latest
+
+services:
+  - docker
+
+script:
+  - gradle build
+
+after_success:
+  - docker --version  # document the version travis is using
+  - docker build --rm -f "Dockerfile" -t $DOCKERHUB_ACCOUNT/$APP_NAME:$VERSION .
+  # - docker push $DOCKERHUB_ACCOUNT/$APP_NAME:$VERSION
